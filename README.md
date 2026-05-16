@@ -1,3 +1,4 @@
+
 # 🚀 Complete Guide to MCP in Python
 
 <div align="center">
@@ -740,3 +741,6 @@ This project is licensed under the MIT License.
 ### Power the Future of AI with MCP.
 
 </div>
+=======
+ 
+>>>>>>> e60bc22 (adding the introduciton)
