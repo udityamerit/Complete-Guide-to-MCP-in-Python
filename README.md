@@ -436,30 +436,25 @@ sequenceDiagram
 ```mermaid
 flowchart TB
 
-    A[LLM / AI Agent]
-        |
-        v
+    A["LLM or AI Agent"]
+    B["MCP Client"]
+    C["HTTP Transport Layer"]
+    D["Remote MCP Server"]
 
-    B[MCP Client]
-        |
-        v
+    A --> B
+    B --> C
+    C --> D
 
-    C[HTTP Transport Layer]
-        |
-        v
+    D --> E["Authentication"]
+    D --> F["Tool Execution"]
+    D --> G["Prompt Engine"]
+    D --> H["Resource Access"]
 
-    D[Remote MCP Server]
-    
-    D --> E[Authentication]
-    D --> F[Tool Execution]
-    D --> G[Prompt Engine]
-    D --> H[Resource Access]
+    F --> I["External APIs"]
+    F --> J["Cloud Functions"]
+    F --> K["Databases"]
 
-    F --> I[External APIs]
-    F --> J[Cloud Functions]
-    F --> K[Databases]
-
-    I --> L[Execution Result]
+    I --> L["Execution Result"]
     J --> L
     K --> L
 
@@ -474,20 +469,20 @@ flowchart TB
 ```mermaid
 flowchart LR
 
-    A[AI Application]
-        |
-        v
+    A["AI Application"]
+    B["MCP Client"]
+    C["Local MCP Server"]
 
-    B[MCP Client]
+    A --> B
+    B --> C
+    C --> B
 
-    B <-- STDIO --> C[Local MCP Server]
+    C --> D["Python Functions"]
+    C --> E["Local Files"]
+    C --> F["Terminal Commands"]
+    C --> G["Local APIs"]
 
-    C --> D[Python Functions]
-    C --> E[Local Files]
-    C --> F[Terminal Commands]
-    C --> G[Local APIs]
-
-    D --> H[Response]
+    D --> H["Response"]
     E --> H
     F --> H
     G --> H
