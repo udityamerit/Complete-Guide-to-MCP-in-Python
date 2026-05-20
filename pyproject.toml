@@ -1,9 +1,0 @@
-[project]
-name = "complete-guide-to-mcp-in-python"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "mcp[cli]>=1.27.1",
-]
