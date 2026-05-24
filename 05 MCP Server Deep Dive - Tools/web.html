@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top 10 World Batsmen · Cricket Stats 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060810;
+  --surface: #0C0F1A;
+  --surface2: #111522;
+  --border: rgba(255,255,255,0.07);
+  --border-accent: rgba(250,196,75,0.3);
+  --gold: #FAC44B;
+  --gold2: #F5A623;
+  --emerald: #00C98D;
+  --sapphire: #4D9EFF;
+  --ruby: #FF5E5E;
+  --text: #E8EAF0;
+  --muted: #5A6080;
+  --dim: #8890AA;
+  --white: #FFFFFF;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; min-height: 100vh; overflow-x: hidden; }
+.bg-fx { position: fixed; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(ellipse 70% 50% at 15% 10%, rgba(250,196,75,0.055) 0%, transparent 55%), radial-gradient(ellipse 50% 60% at 85% 90%, rgba(77,158,255,0.04) 0%, transparent 55%), radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0,201,141,0.025) 0%, transparent 60%); }
+.wrap { position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+header { padding: 72px 0 56px; border-bottom: 1px solid var(--border); margin-bottom: 56px; }
+.header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+.eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; opacity: 0; animation: up 0.7s 0s ease forwards; }
+.eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.6; }
+h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6vw, 82px); font-weight: 700; line-height: 1.02; color: var(--white); opacity: 0; animation: up 0.7s 0.08s ease forwards; }
+h1 em { font-style: italic; background: linear-gradient(135deg, var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.header-desc { font-size: 15px; color: var(--dim); margin-top: 14px; max-width: 440px; line-height: 1.6; opacity: 0; animation: up 0.7s 0.15s ease forwards; }
+.header-right { opacity: 0; animation: up 0.7s 0.2s ease forwards; }
+.legend { display: flex; flex-direction: column; gap: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+.ld-test { background: var(--gold); }
+.ld-odi { background: var(--emerald); }
+.ld-t20 { background: var(--sapphire); }
+.summary-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 48px; opacity: 0; animation: up 0.7s 0.25s ease forwards; }
+.s-item { background: var(--surface); padding: 22px 20px; text-align: center; transition: background 0.2s; }
+.s-item:hover { background: var(--surface2); }
+.s-label { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.s-val { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 700; color: var(--gold); line-height: 1; }
+.s-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.tabs-bar { display: flex; gap: 6px; margin-bottom: 32px; opacity: 0; animation: up 0.7s 0.3s ease forwards; flex-wrap: wrap; }
+.tab { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 9px 22px; border-radius: 3px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.18s; }
+.tab:hover { border-color: var(--border-accent); color: var(--gold); }
+.tab.active-test { background: var(--gold); border-color: var(--gold); color: #060810; font-weight: 600; }
+.tab.active-odi { background: var(--emerald); border-color: var(--emerald); color: #060810; font-weight: 600; }
+.tab.active-t20 { background: var(--sapphire); border-color: var(--sapphire); color: #060810; font-weight: 600; }
+.tab.active-all { background: linear-gradient(135deg, var(--gold), var(--sapphire)); border-color: transparent; color: #060810; font-weight: 600; }
+.sort-bar { display: flex; gap: 6px; margin-bottom: 20px; align-items: center; flex-wrap: wrap; opacity: 0; animation: up 0.7s 0.32s ease forwards; }
+.sort-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; margin-right: 4px; }
+.sort-btn { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 2px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.sort-btn:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+.sort-btn.active { border-color: rgba(255,255,255,0.3); color: var(--text); background: rgba(255,255,255,0.05); }
+.tbl-head { display: grid; grid-template-columns: 56px 1fr 72px 100px 120px 64px 64px 64px; gap: 16px; padding: 10px 20px; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); margin-bottom: 8px; opacity: 0; animation: up 0.6s 0.35s ease forwards; }
+.tbl-head .r { text-align: right; }
+.player-card { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; margin-bottom: 8px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; opacity: 0; animation: up 0.5s ease forwards; }
+.player-card:hover { border-color: rgba(255,255,255,0.14); box-shadow: 0 4px 32px rgba(0,0,0,0.4); transform: translateY(-1px); }
+.player-card.open { border-color: var(--accent-color, var(--gold)); }
+.player-card.open .chevron { transform: rotate(180deg); }
+.card-row { display: grid; grid-template-columns: 56px 1fr 72px 100px 120px 64px 64px 64px; gap: 16px; align-items: center; padding: 16px 20px; }
+.c-rank { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: rgba(255,255,255,0.12); line-height: 1; transition: color 0.2s; display: flex; align-items: center; }
+.player-card:hover .c-rank, .player-card.open .c-rank { color: var(--accent-color, var(--gold)); }
+.medal-icon { font-size: 22px; }
+.c-info { min-width: 0; }
+.c-name { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 700; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 8px; }
+.c-country { font-size: 12px; color: var(--muted); margin-top: 3px; display: flex; align-items: center; gap: 5px; }
+.ret-badge { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.1em; padding: 2px 7px; border-radius: 2px; background: rgba(255,94,94,0.12); color: #FF5E5E; border: 1px solid rgba(255,94,94,0.2); text-transform: uppercase; }
+.c-matches { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--dim); text-align: right; }
+.c-runs { font-family: 'JetBrains Mono', monospace; font-size: 15px; color: var(--text); font-weight: 500; text-align: right; }
+.avg-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.avg-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; }
+.avg-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+.avg-fill { height: 100%; border-radius: 2px; transition: width 0.8s cubic-bezier(0.4,0,0.2,1); width: 0; }
+.c-100 { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--dim); text-align: right; }
+.c-50 { font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--muted); text-align: right; }
+.c-hs { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); text-align: right; }
+.chevron { margin-left: auto; font-size: 14px; color: var(--muted); transition: transform 0.3s; display: inline-block; flex-shrink: 0; }
+.card-detail { display: none; padding: 0 20px 24px; border-top: 1px solid var(--border); }
+.player-card.open .card-detail { display: block; }
+.detail-title { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding: 18px 0 14px; }
+.fmt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.fmt-block { background: var(--surface2); border-radius: 5px; border: 1px solid var(--border); padding: 18px 18px 16px; position: relative; overflow: hidden; }
+.fmt-stripe { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.fmt-block-title { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.fmt-stat { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.fmt-stat:last-child { border-bottom: none; }
+.fs-label { font-size: 12px; color: var(--muted); }
+.fs-val { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text); font-weight: 500; }
+.fs-val.big { font-size: 15px; color: var(--white); }
+.mini-bar-wrap { margin-top: 12px; }
+.mini-bar-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+.mini-bar-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+.mini-bar-fill { height: 100%; border-radius: 2px; }
+.chart-section { margin-top: 56px; padding-top: 48px; border-top: 1px solid var(--border); opacity: 0; animation: up 0.7s 0.4s ease forwards; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.section-sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+.chart-tabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+.ctab { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 3px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; }
+.ctab:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+.ctab.active { background: rgba(255,255,255,0.07); color: var(--text); border-color: rgba(255,255,255,0.2); }
+.bar-chart { display: flex; flex-direction: column; gap: 10px; }
+.bc-row { display: grid; grid-template-columns: 160px 1fr 72px; gap: 14px; align-items: center; }
+.bc-name { font-size: 13px; color: var(--dim); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bc-track { height: 26px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; }
+.bc-fill { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(0,0,0,0.7); font-weight: 500; white-space: nowrap; overflow: hidden; transition: width 0.9s cubic-bezier(0.4,0,0.2,1); width: 0 !important; }
+.bc-val { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--dim); text-align: right; }
+footer { margin-top: 72px; padding: 28px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-l { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+.footer-r { font-size: 12px; color: var(--muted); }
+@keyframes up { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform: translateY(0); } }
+@media(max-width:900px) { .tbl-head { display: none; } .card-row { grid-template-columns: 44px 1fr auto; } .c-matches,.c-runs,.c-avg-wrap,.c-100,.c-50,.c-hs { display: none; } .fmt-grid { grid-template-columns: 1fr; } .bc-row { grid-template-columns: 110px 1fr 60px; } .summary-strip { grid-template-columns: repeat(3,1fr); } }
+</style>
+</head>
+<body>
+<div class="bg-fx"></div>
+<div class="wrap">
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="eyebrow">World Cricket · 2026 Edition</div>
+      <h1>The <em>Greatest</em><br>Batsmen Alive</h1>
+      <p class="header-desc">Complete career statistics across Test, ODI & T20 International cricket. Click any player to expand their full format breakdown.</p>
+    </div>
+    <div class="header-right">
+      <div class="legend">
+        <div class="legend-item"><span class="legend-dot ld-test"></span>Test Cricket</div>
+        <div class="legend-item"><span class="legend-dot ld-odi"></span>ODIs</div>
+        <div class="legend-item"><span class="legend-dot ld-t20"></span>T20 Internationals</div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="summary-strip">
+  <div class="s-item"><div class="s-label">Players</div><div class="s-val">10</div><div class="s-sub">Elite batsmen</div></div>
+  <div class="s-item"><div class="s-label">Combined Runs</div><div class="s-val" id="ss-runs">—</div><div class="s-sub" id="ss-runs-sub">in format</div></div>
+  <div class="s-item"><div class="s-label">Total Centuries</div><div class="s-val" id="ss-100s">—</div><div class="s-sub">international 100s</div></div>
+  <div class="s-item"><div class="s-label">Highest Avg</div><div class="s-val" id="ss-avg">—</div><div class="s-sub" id="ss-avg-who">—</div></div>
+  <div class="s-item"><div class="s-label">Highest Score</div><div class="s-val" id="ss-hs">—</div><div class="s-sub" id="ss-hs-who">—</div></div>
+</div>
+<div class="tabs-bar">
+  <button class="tab active-test" data-fmt="test">Tests</button>
+  <button class="tab" data-fmt="odi">ODIs</button>
+  <button class="tab" data-fmt="t20">T20Is</button>
+  <button class="tab" data-fmt="all">All Formats</button>
+</div>
+<div class="sort-bar">
+  <span class="sort-label">Sort by</span>
+  <button class="sort-btn active" data-sort="rank">Rank</button>
+  <button class="sort-btn" data-sort="runs">Runs</button>
+  <button class="sort-btn" data-sort="avg">Average</button>
+  <button class="sort-btn" data-sort="100s">Centuries</button>
+</div>
+<div class="tbl-head">
+  <div>#</div><div>Batsman</div><div class="r">M</div><div class="r">Runs</div><div>Average</div><div class="r">100s</div><div class="r">50s</div><div class="r">H/S</div>
+</div>
+<div id="playerList"></div>
+<div class="chart-section">
+  <div class="section-title">Visual Comparison</div>
+  <p class="section-sub">Compare players across key metrics.</p>
+  <div class="chart-tabs">
+    <button class="ctab active" data-cm="runs">Runs</button>
+    <button class="ctab" data-cm="avg">Average</button>
+    <button class="ctab" data-cm="100s">Centuries</button>
+    <button class="ctab" data-cm="50s">Fifties</button>
+    <button class="ctab" data-cm="matches">Matches</button>
+  </div>
+  <div class="bar-chart" id="barChart"></div>
+</div>
+</div>
+<div class="wrap">
+  <footer>
+    <div class="footer-l">Top 10 · World Batsmen · 2026</div>
+    <div class="footer-r">Stats current to 2025–2026 season</div>
+  </footer>
+</div>
+<script>
+const DATA=[{rank:1,name:'Virat Kohli',flag:'🇮🇳',country:'India',test:{m:123,runs:8848,avg:46.85,hs:'254*',h:29,f:31,ret:true},odi:{m:295,runs:13906,avg:58.18,hs:'183',h:50,f:72,ret:false},t20:{m:125,runs:4188,avg:52.73,hs:'122*',h:1,f:38,ret:true}},{rank:2,name:'Joe Root',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',country:'England',test:{m:150,runs:13000,avg:51.29,hs:'254',h:36,f:62,ret:false},odi:{m:161,runs:6109,avg:49.67,hs:'133*',h:17,f:37,ret:false},t20:{m:32,runs:893,avg:26.26,hs:'90*',h:0,f:3,ret:false}},{rank:3,name:'Kane Williamson',flag:'🇳🇿',country:'New Zealand',test:{m:101,runs:8944,avg:54.88,hs:'251',h:33,f:37,ret:false},odi:{m:161,runs:6810,avg:47.29,hs:'148',h:13,f:46,ret:false},t20:{m:82,runs:2575,avg:33.44,hs:'95',h:0,f:18,ret:false}},{rank:4,name:'Steven Smith',flag:'🇦🇺',country:'Australia',test:{m:108,runs:9296,avg:56.02,hs:'239',h:33,f:40,ret:false},odi:{m:128,runs:4227,avg:43.00,hs:'164',h:12,f:25,ret:true},t20:{m:56,runs:940,avg:26.11,hs:'90',h:0,f:7,ret:false}},{rank:5,name:'Rohit Sharma',flag:'🇮🇳',country:'India',test:{m:67,runs:4301,avg:40.57,hs:'212',h:12,f:17,ret:true},odi:{m:265,runs:10866,avg:49.16,hs:'264',h:31,f:57,ret:false},t20:{m:159,runs:4231,avg:32.05,hs:'121*',h:5,f:32,ret:true}},{rank:6,name:'Babar Azam',flag:'🇵🇰',country:'Pakistan',test:{m:62,runs:4001,avg:43.48,hs:'196',h:9,f:26,ret:false},odi:{m:123,runs:5957,avg:56.73,hs:'158',h:19,f:34,ret:false},t20:{m:131,runs:4234,avg:39.57,hs:'122',h:3,f:36,ret:false}},{rank:7,name:'Travis Head',flag:'🇦🇺',country:'Australia',test:{m:45,runs:3286,avg:44.40,hs:'202*',h:9,f:12,ret:false},odi:{m:57,runs:1985,avg:37.92,hs:'140*',h:4,f:13,ret:false},t20:{m:58,runs:1609,avg:32.18,hs:'99',h:0,f:12,ret:false}},{rank:8,name:'Shubman Gill',flag:'🇮🇳',country:'India',test:{m:30,runs:1788,avg:37.25,hs:'128',h:4,f:11,ret:false},odi:{m:64,runs:2988,avg:55.33,hs:'208',h:8,f:17,ret:false},t20:{m:30,runs:891,avg:34.26,hs:'126*',h:1,f:6,ret:false}},{rank:9,name:'Jos Buttler',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',country:'England',test:{m:59,runs:2490,avg:33.24,hs:'152',h:3,f:18,ret:false},odi:{m:181,runs:5022,avg:39.54,hs:'162*',h:11,f:26,ret:false},t20:{m:144,runs:3869,avg:35.49,hs:'101*',h:1,f:28,ret:false}},{rank:10,name:'Mohammad Rizwan',flag:'🇵🇰',country:'Pakistan',test:{m:42,runs:2370,avg:39.50,hs:'115*',h:4,f:14,ret:false},odi:{m:65,runs:1937,avg:38.74,hs:'115',h:2,f:15,ret:false},t20:{m:102,runs:3600,avg:46.15,hs:'104*',h:1,f:34,ret:false}}];
+const MEDALS=['🥇','🥈','🥉'];
+const FMT_COLS={test:'#FAC44B',odi:'#00C98D',t20:'#4D9EFF',all:'#B08AFF'};
+const FMT_NAMES={test:'Test Cricket',odi:'One Day Internationals',t20:'T20 Internationals'};
+let curFmt='test',curSort='rank',curChart='runs',expanded=new Set();
+function fmtData(p,fmt){if(fmt==='all')return{m:p.test.m+p.odi.m+p.t20.m,runs:p.test.runs+p.odi.runs+p.t20.runs,avg:+((p.test.avg+p.odi.avg+p.t20.avg)/3).toFixed(2),hs:p.odi.hs,h:p.test.h+p.odi.h+p.t20.h,f:p.test.f+p.odi.f+p.t20.f,ret:false};return p[fmt];}
+function maxOf(fmt,key){return Math.max(...DATA.map(p=>{const d=fmtData(p,fmt);return d[key]??0;}));}
+function updateSummary(fmt){let tR=0,t1=0,bA=0,bAW='',bHS=0,bHSS='',bHSW='';DATA.forEach(p=>{const d=fmtData(p,fmt);tR+=d.runs;t1+=d.h;if(d.avg>bA){bA=d.avg;bAW=p.name.split(' ').slice(-1)[0];}const hn=parseInt(d.hs);if(hn>bHS){bHS=hn;bHSS=d.hs;bHSW=p.name.split(' ').slice(-1)[0];}});document.getElementById('ss-runs').textContent=(tR/1000).toFixed(1)+'K';document.getElementById('ss-runs-sub').textContent=fmt==='all'?'across all formats':'in '+fmt.toUpperCase()+'s';document.getElementById('ss-100s').textContent=t1;document.getElementById('ss-avg').textContent=bA.toFixed(2);document.getElementById('ss-avg-who').textContent=bAW;document.getElementById('ss-hs').textContent=bHSS;document.getElementById('ss-hs-who').textContent=bHSW;}
+function sorted(data,fmt,key){if(key==='rank')return[...data].sort((a,b)=>a.rank-b.rank);return[...data].sort((a,b)=>{const da=fmtData(a,fmt),db=fmtData(b,fmt);const va=da[key==='100s'?'h':key==='avg'?'avg':'runs'];const vb=db[key==='100s'?'h':key==='avg'?'avg':'runs'];return vb-va;});}
+function renderCards(){const list=document.getElementById('playerList');const accent=FMT_COLS[curFmt]||FMT_COLS.test;const maxAvg=maxOf(curFmt,'avg');const players=sorted(DATA,curFmt,curSort);list.innerHTML='';players.forEach((p,i)=>{const d=fmtData(p,curFmt);const avgPct=Math.round((d.avg/maxAvg)*100);const isOpen=expanded.has(p.rank);const medal=p.rank<=3?MEDALS[p.rank-1]:'';const card=document.createElement('div');card.className='player-card'+(isOpen?' open':'');card.style.cssText=`animation-delay:${i*0.04}s;--accent-color:${accent}`;card.dataset.rank=p.rank;const retBadge=d.ret?'<span class="ret-badge">Retired</span>':'';const fmtBlocks=['test','odi','t20'].map(f=>{const fd=p[f];const fc=FMT_COLS[f];const maxA=maxOf(f,'avg');const aP=Math.round((fd.avg/maxA)*100);return`<div class="fmt-block"><div class="fmt-stripe" style="background:${fc}"></div><div class="fmt-block-title" style="color:${fc}">${FMT_NAMES[f]}${fd.ret?'<span class="ret-badge">Retired</span>':''}</div><div class="fmt-stat"><span class="fs-label">Matches</span><span class="fs-val">${fd.m}</span></div><div class="fmt-stat"><span class="fs-label">Runs</span><span class="fs-val big">${fd.runs.toLocaleString()}</span></div><div class="fmt-stat"><span class="fs-label">Average</span><span class="fs-val" style="color:${fc}">${fd.avg.toFixed(2)}</span></div><div class="fmt-stat"><span class="fs-label">Highest Score</span><span class="fs-val">${fd.hs}</span></div><div class="fmt-stat"><span class="fs-label">Centuries</span><span class="fs-val">${fd.h}</span></div><div class="fmt-stat"><span class="fs-label">Fifties</span><span class="fs-val">${fd.f}</span></div><div class="mini-bar-wrap"><div class="mini-bar-label">Average / best</div><div class="mini-bar-track"><div class="mini-bar-fill" style="width:${aP}%;background:${fc};opacity:0.6"></div></div></div></div>`;}).join('');card.innerHTML=`<div class="card-row"><div class="c-rank">${medal?`<span class="medal-icon">${medal}</span>`:p.rank}</div><div class="c-info"><div class="c-name">${p.flag} ${p.name} <span class="chevron">▾</span></div><div class="c-country">${p.country} ${retBadge}</div></div><div class="c-matches">${d.m}</div><div class="c-runs">${d.runs.toLocaleString()}</div><div class="c-avg-wrap"><div class="avg-row"><span class="avg-num" style="color:${accent}">${d.avg.toFixed(2)}</span></div><div class="avg-track"><div class="avg-fill" data-pct="${avgPct}" style="background:${accent};width:0%"></div></div></div><div class="c-100">${d.h}</div><div class="c-50">${d.f}</div><div class="c-hs">${d.hs}</div></div><div class="card-detail"><div class="detail-title">Full format breakdown</div><div class="fmt-grid">${fmtBlocks}</div></div>`;card.querySelector('.card-row').addEventListener('click',()=>{if(expanded.has(p.rank))expanded.delete(p.rank);else expanded.add(p.rank);renderCards();});list.appendChild(card);setTimeout(()=>{const fill=card.querySelector('.avg-fill');if(fill)fill.style.width=fill.dataset.pct+'%';},60+i*40);});}
+function renderChart(){const container=document.getElementById('barChart');const metric=curChart;const accent=FMT_COLS[curFmt]||FMT_COLS.test;const mapped=DATA.map(p=>{const d=fmtData(p,curFmt);let val;if(metric==='runs')val=d.runs;else if(metric==='avg')val=d.avg;else if(metric==='100s')val=d.h;else if(metric==='50s')val=d.f;else val=d.m;return{name:p.name,val,flag:p.flag};}).sort((a,b)=>b.val-a.val);const maxVal=Math.max(...mapped.map(r=>r.val));container.innerHTML='';mapped.forEach((r,i)=>{const pct=Math.round((r.val/maxVal)*100);const displayVal=metric==='avg'?r.val.toFixed(2):r.val.toLocaleString();const row=document.createElement('div');row.className='bc-row';row.innerHTML=`<div class="bc-name">${r.flag} ${r.name.split(' ').slice(-1)[0]}</div><div class="bc-track"><div class="bc-fill" data-pct="${pct}" style="background:linear-gradient(90deg,${accent},${accent}99);width:0%">${displayVal}</div></div><div class="bc-val">${displayVal}</div>`;container.appendChild(row);setTimeout(()=>{const fill=row.querySelector('.bc-fill');if(fill)fill.style.width=pct+'%';},80+i*45);});}
+document.querySelectorAll('.tab').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.className='tab');btn.classList.add('active-'+btn.dataset.fmt);curFmt=btn.dataset.fmt;expanded.clear();renderCards();updateSummary(curFmt);renderChart();});});
+document.querySelectorAll('.sort-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curSort=btn.dataset.sort;renderCards();});});
+document.querySelectorAll('.ctab').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.ctab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');curChart=btn.dataset.cm;renderChart();});});
+renderCards();updateSummary(curFmt);renderChart();
+</script>
+</body>
+</html>

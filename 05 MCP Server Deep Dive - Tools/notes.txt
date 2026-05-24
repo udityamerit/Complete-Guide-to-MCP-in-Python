@@ -1,0 +1,55 @@
+my favourite pizza topping is toinos
+i love to learn the new things every day
+
+--- Top 10 World Batsmen Stats (2026) ---
+
+1. Virat Kohli (India)
+   Tests: 123 matches, 8848 runs, avg 46.85, HS 254*, 29 hundreds, 31 fifties (retired)
+   ODIs: 295 matches, 13906 runs, avg 58.18, HS 183, 50 hundreds, 72 fifties
+   T20Is: 125 matches, 4188 runs, avg 52.73, HS 122*, 1 hundred, 38 fifties (retired)
+
+2. Joe Root (England)
+   Tests: 150 matches, 13000 runs, avg 51.29, HS 254, 36 hundreds, 62 fifties
+   ODIs: 161 matches, 6109 runs, avg 49.67, HS 133*, 17 hundreds, 37 fifties
+   T20Is: 32 matches, 893 runs, avg 26.26, HS 90*, 0 hundreds, 3 fifties
+
+3. Kane Williamson (New Zealand)
+   Tests: 101 matches, 8944 runs, avg 54.88, HS 251, 33 hundreds, 37 fifties
+   ODIs: 161 matches, 6810 runs, avg 47.29, HS 148, 13 hundreds, 46 fifties
+   T20Is: 82 matches, 2575 runs, avg 33.44, HS 95, 0 hundreds, 18 fifties
+
+4. Steven Smith (Australia)
+   Tests: 108 matches, 9296 runs, avg 56.02, HS 239, 33 hundreds, 40 fifties
+   ODIs: 128 matches, 4227 runs, avg 43.00, HS 164, 12 hundreds, 25 fifties (retired)
+   T20Is: 56 matches, 940 runs, avg 26.11, HS 90, 0 hundreds, 7 fifties
+
+5. Rohit Sharma (India)
+   Tests: 67 matches, 4301 runs, avg 40.57, HS 212, 12 hundreds, 17 fifties (retired)
+   ODIs: 265 matches, 10866 runs, avg 49.16, HS 264, 31 hundreds, 57 fifties
+   T20Is: 159 matches, 4231 runs, avg 32.05, HS 121*, 5 hundreds, 32 fifties (retired)
+
+6. Babar Azam (Pakistan)
+   Tests: 62 matches, 4001 runs, avg 43.48, HS 196, 9 hundreds, 26 fifties
+   ODIs: 123 matches, 5957 runs, avg 56.73, HS 158, 19 hundreds, 34 fifties
+   T20Is: 131 matches, 4234 runs, avg 39.57, HS 122, 3 hundreds, 36 fifties
+
+7. Travis Head (Australia)
+   Tests: 45 matches, 3286 runs, avg 44.40, HS 202*, 9 hundreds, 12 fifties
+   ODIs: 57 matches, 1985 runs, avg 37.92, HS 140*, 4 hundreds, 13 fifties
+   T20Is: 58 matches, 1609 runs, avg 32.18, HS 99, 0 hundreds, 12 fifties
+
+8. Shubman Gill (India)
+   Tests: 30 matches, 1788 runs, avg 37.25, HS 128, 4 hundreds, 11 fifties
+   ODIs: 64 matches, 2988 runs, avg 55.33, HS 208, 8 hundreds, 17 fifties
+   T20Is: 30 matches, 891 runs, avg 34.26, HS 126*, 1 hundred, 6 fifties
+
+9. Jos Buttler (England)
+   Tests: 59 matches, 2490 runs, avg 33.24, HS 152, 3 hundreds, 18 fifties
+   ODIs: 181 matches, 5022 runs, avg 39.54, HS 162*, 11 hundreds, 26 fifties
+   T20Is: 144 matches, 3869 runs, avg 35.49, HS 101*, 1 hundred, 28 fifties
+
+10. Mohammad Rizwan (Pakistan)
+    Tests: 42 matches, 2370 runs, avg 39.50, HS 115*, 4 hundreds, 14 fifties
+    ODIs: 65 matches, 1937 runs, avg 38.74, HS 115, 2 hundreds, 15 fifties
+    T20Is: 102 matches, 3600 runs, avg 46.15, HS 104*, 1 hundred, 34 fifties
+
