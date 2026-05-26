@@ -53,3 +53,96 @@ i love to learn the new things every day
     ODIs: 65 matches, 1937 runs, avg 38.74, HS 115, 2 hundreds, 15 fifties
     T20Is: 102 matches, 3600 runs, avg 46.15, HS 104*, 1 hundred, 34 fifties
 
+
+
+════════════════════════════════════════════════════════════
+📌  CRYPTOCURRENCY & CRYPTOGRAPHY — INVESTMENT RESEARCH NOTE
+════════════════════════════════════════════════════════════
+Date: 25 May 2026
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔐  WHAT IS CRYPTOGRAPHY IN CRYPTO?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cryptography is the science of securing information through
+mathematical algorithms. In the context of cryptocurrencies,
+it serves three core purposes:
+
+  1. Security       — Protects transactions from tampering
+  2. Anonymity      — Masks user identities via public/private keys
+  3. Decentralisation — Eliminates the need for central authorities
+                        (banks, governments)
+
+Key Concepts:
+  • Public Key  : Your wallet address (shareable)
+  • Private Key : Your secret password (never share)
+  • Hash Function: Converts data into a fixed-length code (e.g. SHA-256)
+  • Blockchain   : A chain of cryptographically linked transaction blocks
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💰  MAJOR CRYPTOCURRENCIES TO WATCH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  1. Bitcoin (BTC)
+     Current Price : $77,194 USD | ₹73,62,991 INR
+     Use Case      : Digital gold, store of value
+     Algorithm     : SHA-256 (Proof of Work)
+     Notable       : First ever cryptocurrency (2009, Satoshi Nakamoto)
+
+  2. Ethereum (ETH)
+     Use Case      : Smart contracts, DeFi, NFTs
+     Algorithm     : Proof of Stake (post-Merge 2022)
+     Notable       : Powers most of the decentralised web (Web3)
+
+  3. Solana (SOL)
+     Use Case      : High-speed transactions, DApps
+     Algorithm     : Proof of History + Proof of Stake
+     Notable       : Extremely fast (~65,000 TPS)
+
+  4. Ripple (XRP)
+     Use Case      : Cross-border payments for banks
+     Notable       : Designed for institutional finance, not retail
+
+  5. Litecoin (LTC)
+     Use Case      : Faster, cheaper Bitcoin alternative
+     Algorithm     : Scrypt (Proof of Work)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💡  KEY IDEA / PERSONAL INSIGHT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cryptography is not just a technology — it is the foundation
+of trust in a trustless world. Every cryptocurrency coin is
+essentially a cryptographic proof that ownership has changed
+hands, without needing a middleman.
+
+The real idea: "Code replaces contracts. Math replaces banks."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  REMINDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  • Crypto markets are highly volatile — research before investing
+  • Never invest more than you can afford to lose
+  • Always store keys securely (hardware wallet preferred)
+
+════════════════════════════════════════════════════════════
+
+
+════════════════════════════════════════════════════════════
+📊  CRYPTO PRICE COMPARISON — LIVE UPDATE
+════════════════════════════════════════════════════════════
+Date: 25 May 2026
+
+  ┌─────────────────────────────────────────────────────┐
+  │  Rank  │  Coin              │  USD         │  INR          │
+  ├─────────────────────────────────────────────────────┤
+  │  🥇 1  │  Bitcoin   (BTC)  │  $77,250.00  │  ₹73,66,571  │
+  │  🥈 2  │  Ethereum  (ETH)  │  $2,110.41   │  ₹2,01,250   │
+  │  🥉 3  │  Litecoin  (LTC)  │  $52.91      │  ₹5,045.69   │
+  └─────────────────────────────────────────────────────┘
+
+  Key Takeaways:
+  • Bitcoin is 36x more expensive than Ethereum
+  • Bitcoin is ~1,460x more expensive than Litecoin
+  • Ethereum is ~40x more expensive than Litecoin
+
+════════════════════════════════════════════════════════════
+
