@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from openai import OpenAI
 
-YOUR_API_KEY = 'YOUR_PERPLEXITY_API_KEY'
+YOUR_API_KEY = 'YOUR_PERPLEXITY_API_KEY '
 
 mcp = FastMCP("Web Search")
 

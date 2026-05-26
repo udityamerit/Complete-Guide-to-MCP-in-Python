@@ -3,7 +3,7 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("LocalNotes")
 import os
 
-# This always points to the folder where local.py lives
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 NOTES_FILE = os.path.join(BASE_DIR, 'notes.txt')
 
