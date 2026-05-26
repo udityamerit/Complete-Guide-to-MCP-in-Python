@@ -44,34 +44,82 @@ UV is extremely fast and lightweight compared to traditional Python package mana
 
 # Installation
 
-## Step 1: Install UV
+# Step 1 — Install Python
 
-Install UV using:
+Download Python from the official website:
 
-```bash
-pip install uv
-```
+https://www.python.org/downloads/
 
-Official Documentation:
-https://docs.astral.sh/uv/
-
----
-
-## Step 2: Initialize the Project
+Verify installation:
 
 ```bash
-uv init
+python --version
 ```
 
 ---
 
-## Step 3: Install MCP
+# Step 2 — Install UV
+
+UV is a fast Python package manager and virtual environment manager.
+
+## Windows
 
 ```bash
-uv add mcp[cli]
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-This installs the MCP SDK and CLI tools.
+## Linux / macOS
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Verify installation:
+
+```bash
+uv --version
+```
+
+---
+
+# Step 3 — Create Virtual Environment
+
+```bash
+uv venv
+```
+
+Activate the virtual environment.
+
+## Windows
+
+```bash
+.venv\Scripts\activate
+```
+
+## Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
+
+---
+
+# Step 4 — Install Required MCP Dependencies
+
+After activating the virtual environment, install the required MCP packages.
+
+## Recommended Command
+
+```bash
+uv add "mcp[cli]"
+```
+
+This command installs:
+
+- MCP SDK
+- MCP CLI tools
+- Required dependencies
+- HTTP support
 
 ---
 

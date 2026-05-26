@@ -19,29 +19,58 @@ UV helps developers set up projects quickly and manage dependencies in a clean a
 
 # Setting Up an MCP Server
 
-## Step 1: Install UV and Initialize the Project
 
-First, install `uv` on your system.
+# Why Use `uv add` Instead of `pip install`?
 
-Then initialize your project using:
+Using `uv add`:
+
+- Automatically manages dependencies
+- Updates `pyproject.toml`
+- Creates reproducible environments
+- Faster than pip
+- Recommended for MCP projects
+
+---
+
+# Complete Setup Commands
 
 ```bash
 uv init
 ```
 
-This command initializes the current folder as a Python project.
+```bash
+uv venv
+```
+
+## Activate Environment
+
+### Windows
+
+```bash
+.\.venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+source .venv/bin/activate
+```
 
 ---
 
-## Step 2: Install MCP Dependency
-
-Install the MCP dependency using:
+# Install MCP
 
 ```bash
-uv add mcp[cli]
+uv add "mcp[cli]"
 ```
 
-This installs the MCP package along with its CLI tools.
+---
+
+# Install Project Dependencies
+
+```bash
+uv add requests openai pyautogui pillow pydantic
+```
 
 ---
 

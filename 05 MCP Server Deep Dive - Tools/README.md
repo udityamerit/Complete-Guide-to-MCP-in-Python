@@ -44,59 +44,37 @@ Before running the project, make sure the following are installed:
 
 ---
 
-# Step 1 — Install Python
+# Why Use `uv add` Instead of `pip install`?
 
-Download Python from the official website:
+Using `uv add`:
 
-https://www.python.org/downloads/
-
-Verify installation:
-
-```bash
-python --version
-```
+- Automatically manages dependencies
+- Updates `pyproject.toml`
+- Creates reproducible environments
+- Faster than pip
+- Recommended for MCP projects
 
 ---
 
-# Step 2 — Install UV
-
-UV is a fast Python package manager and virtual environment manager.
-
-## Windows
+# Complete Setup Commands
 
 ```bash
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+uv init
 ```
-
-## Linux / macOS
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-Verify installation:
-
-```bash
-uv --version
-```
-
----
-
-# Step 3 — Create Virtual Environment
 
 ```bash
 uv venv
 ```
 
-Activate the virtual environment.
+## Activate Environment
 
-## Windows
+### Windows
 
 ```bash
-.venv\Scripts\activate
+.\.venv\Scripts\activate
 ```
 
-## Linux / macOS
+### Linux / macOS
 
 ```bash
 source .venv/bin/activate
@@ -104,12 +82,18 @@ source .venv/bin/activate
 
 ---
 
-# Step 4 — Install Dependencies
-
-Install all required Python packages.
+# Install MCP
 
 ```bash
-uv pip install mcp requests openai pyautogui pillow pydantic
+uv add "mcp[cli]"
+```
+
+---
+
+# Install Project Dependencies
+
+```bash
+uv add requests openai pyautogui pillow pydantic
 ```
 
 ---
