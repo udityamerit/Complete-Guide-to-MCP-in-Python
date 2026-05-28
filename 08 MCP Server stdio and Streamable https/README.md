@@ -206,13 +206,13 @@ Inside MCP Inspector:
 
 ## Connected MCP Server
 
-![MCP Inspector Connection](images/mcp_inspector1.PNG)
+![MCP Inspector Connection](Images/mcp_inspector1.PNG)
 
 ---
 
 ## Tool Execution Result
 
-![MCP Tool Result](images/mcp_inspector2.PNG)
+![MCP Tool Result](Images/mcp_inspector2.PNG)
 
 ---
 
