@@ -672,7 +672,7 @@ flowchart TD
 * MCP Python SDK
 * MCP Inspector
 * FastMCP
-* mcp-remote
+* mcp-remote : https://www.npmjs.com/package/mcp-remote
 
 ---
 
