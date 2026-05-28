@@ -387,15 +387,14 @@ You can extend this project by adding:
 
 ---
 
-# Author
+# 📬 Connect With Me
 
-Uditya Narayan Tiwari
+## 👨‍💻 Uditya Narayan Tiwari
 
-## Connect With Me
-
-* Portfolio: https://udityanarayantiwari.netlify.app/
-* GitHub: https://github.com/udityamerit
-* LinkedIn: https://www.linkedin.com/in/uditya-narayan-tiwari-562332289/
+🌐 Portfolio: https://udityanarayantiwari.netlify.app/  
+📚 Knowledge Base: https://udityaknowledgebase.netlify.app/  
+💻 GitHub: https://github.com/udityamerit  
+🔗 LinkedIn: https://www.linkedin.com/in/uditya-narayan-tiwari-562332289/  
 
 ---
 

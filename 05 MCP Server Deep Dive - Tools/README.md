@@ -494,21 +494,14 @@ YOUR_API_KEY = "your_actual_api_key"
 
 ---
 
-# Author
+# 📬 Connect With Me
 
-Uditya Narayan Tiwari
+## 👨‍💻 Uditya Narayan Tiwari
 
-## Portfolio
-
-https://udityanarayantiwari.netlify.app/
-
-## GitHub
-
-https://github.com/udityamerit
-
-## LinkedIn
-
-https://www.linkedin.com/in/uditya-narayan-tiwari-562332289/
+🌐 Portfolio: https://udityanarayantiwari.netlify.app/  
+📚 Knowledge Base: https://udityaknowledgebase.netlify.app/  
+💻 GitHub: https://github.com/udityamerit  
+🔗 LinkedIn: https://www.linkedin.com/in/uditya-narayan-tiwari-562332289/  
 
 ---
 

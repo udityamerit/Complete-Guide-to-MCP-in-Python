@@ -180,3 +180,13 @@ mcp install weather.py
 
 - MCP Documentation: https://modelcontextprotocol.io/
 - UV Documentation: https://docs.astral.sh/uv/
+
+
+# 📬 Connect With Me
+
+## 👨‍💻 Uditya Narayan Tiwari
+
+🌐 Portfolio: https://udityanarayantiwari.netlify.app/  
+📚 Knowledge Base: https://udityaknowledgebase.netlify.app/  
+💻 GitHub: https://github.com/udityamerit  
+🔗 LinkedIn: https://www.linkedin.com/in/uditya-narayan-tiwari-562332289/  
