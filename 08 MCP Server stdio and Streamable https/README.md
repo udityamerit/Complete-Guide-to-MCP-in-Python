@@ -258,7 +258,9 @@ For the connection the HTTPS remote MCP server, use this configuration:
   }
 }
 ```
+## Connecting Remote MCP server in VS code
 
+![MCP Remote Connection](Images/mcp_to_copilot.PNG)
 ---
 
 # How It Works
