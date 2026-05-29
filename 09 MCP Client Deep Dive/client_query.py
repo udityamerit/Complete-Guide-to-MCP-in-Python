@@ -1,20 +1,14 @@
-
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
-
 import asyncio
 import traceback
 import json
 import os
 from pathlib import Path
-
 from dotenv import load_dotenv
 from openai import OpenAI
 
 
-# ==========================================
-# ENVIRONMENT VARIABLES
-# ==========================================
 
 BASE_DIR = Path(__file__).parent
 
@@ -39,9 +33,6 @@ if not api_key:
     )
 
 
-# ==========================================
-# SERVER CONFIGURATION
-# ==========================================
 
 server_path = BASE_DIR / "server.py"
 
@@ -59,9 +50,6 @@ server_params = StdioServerParameters(
 )
 
 
-# ==========================================
-# MAIN FUNCTION
-# ==========================================
 
 async def run(query):
 
@@ -81,9 +69,7 @@ async def run(query):
 
                 print("Session Initialized Successfully")
 
-                # --------------------------------------
-                # LIST TOOLS
-                # --------------------------------------
+             
 
                 tools_result = await session.list_tools()
 
@@ -92,9 +78,7 @@ async def run(query):
                 for tool in tools_result.tools:
                     print(f"  - {tool.name}")
 
-                # --------------------------------------
-                # CONVERT MCP TO OPENAI TOOLS
-                # --------------------------------------
+                
 
                 openai_tools = []
 
@@ -123,9 +107,6 @@ async def run(query):
                 print("\nSending Query:")
                 print(query)
 
-                # --------------------------------------
-                # FIRST GPT CALL
-                # --------------------------------------
 
                 response = client.chat.completions.create(
                     model="gpt-4o",
@@ -138,9 +119,7 @@ async def run(query):
 
                 messages.append(assistant_message)
 
-                # --------------------------------------
-                # TOOL EXECUTION
-                # --------------------------------------
+              
 
                 if assistant_message.tool_calls:
 
@@ -174,9 +153,7 @@ async def run(query):
                             }
                         )
 
-                    # --------------------------------------
-                    # FINAL GPT RESPONSE
-                    # --------------------------------------
+                    
 
                     response = client.chat.completions.create(
                         model="gpt-4o",
@@ -203,9 +180,6 @@ async def run(query):
         return None
 
 
-# ==========================================
-# ENTRY POINT
-# ==========================================
 
 if __name__ == "__main__":
 
