@@ -1,3 +1,12 @@
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![MCP](https://img.shields.io/badge/Model%20Context%20Protocol-MCP-green)
+![OpenAI](https://img.shields.io/badge/OpenAI-Vector%20Stores-black)
+![FastMCP](https://img.shields.io/badge/FastMCP-Server-orange)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+
 # MCP Weather Server with OpenAI Tool Calling
 
 A complete example demonstrating how to connect an MCP Client to an MCP Server using Python, FastMCP, and OpenAI Function Calling.
