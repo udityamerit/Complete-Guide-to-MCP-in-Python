@@ -289,9 +289,6 @@ Once connected, MCP Inspector will automatically discover:
 
 ## MCP Inspector Connection
 
-```md
-Images/inspector1.PNG
-```
 
 ![MCP Inspector](Images/inspector1.PNG)
 
@@ -301,9 +298,6 @@ The MCP Inspector successfully discovers and connects to the Memory Server.
 
 ## Saving Memory
 
-```md
-Images/save_memory.PNG
-```
 
 ![Save Memory](Images/save_memory.PNG)
 
@@ -313,9 +307,6 @@ Memory is uploaded and stored inside the vector database.
 
 ## Retrieving Memory
 
-```md
-Images/retrice_query.PNG
-```
 
 ![Search Memory](Images/retrice_query.PNG)
 
@@ -325,9 +316,6 @@ Semantic search retrieves the most relevant memory.
 
 ## GitHub Copilot Integration
 
-```md
-Images/memory_retrive_using_copilot.PNG
-```
 
 ![GitHub Copilot](Images/memory_retrive_using_copilot.PNG)
 
@@ -337,9 +325,7 @@ The memory server can be directly accessed from MCP-enabled GitHub Copilot envir
 
 ## OpenAI Vector Store
 
-```md
-Images/stored_data.PNG
-```
+
 
 ![Vector Store](Images/stored_data.PNG)
 
