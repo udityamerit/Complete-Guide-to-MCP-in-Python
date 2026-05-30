@@ -1,0 +1,11 @@
+[project]
+name = "11-build-mcp-client-with-multi-mcp-server"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.27.2",
+    "openai>=2.38.0",
+    "streamlit>=1.58.0",
+]

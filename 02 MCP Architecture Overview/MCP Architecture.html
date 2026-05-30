@@ -42,82 +42,28 @@
       min-height: 100vh;
     }
 
-    /* Sidebar Styling */
-    aside {
-      width: 300px;
-      background: var(--sidebar-bg);
-      backdrop-filter: blur(20px);
-      border-right: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      position: fixed;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      z-index: 10;
-      overflow-y: auto;
-    }
-
-    .brand {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      background: linear-gradient(to right, #a855f7, #ec4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .brand-icon {
-      width: 24px;
-      height: 24px;
-      background: var(--accent);
-      border-radius: 6px;
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: block;
-      border: 1px solid transparent;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--border);
-      transform: translateX(4px);
-    }
-
-    .nav-links a.active {
-      border-left: 3px solid var(--accent);
-    }
-
     /* Main Content Styling */
     main {
-      margin-left: 300px;
       flex: 1;
       padding: 3rem 4rem;
-      max-width: 1200px;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     header {
@@ -395,29 +341,28 @@
     .image-container img {
       cursor: zoom-in;
     }
+
+    .image-explanation {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-top: -1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .image-explanation strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
   </style>
 </head>
 <body>
 
   <div class="app-container">
-    <!-- Sidebar -->
-    <aside>
-      <div class="brand">
-        <div class="brand-icon"></div>
-        <span>Architecture Guide</span>
-      </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#mcp-architecture" class="active">MCP Architecture</a></li>
-          <li><a href="#multi-server">Multi-Server Architecture</a></li>
-          <li><a href="#advanced-architecture">Advanced Design</a></li>
-          <li><a href="#server-primitives">Server Primitives</a></li>
-          <li><a href="#fastmcp-vs-server">FastMCP vs. Server</a></li>
-          <li><a href="#local-vs-remote">Local vs. Remote MCP</a></li>
-        </ul>
-      </nav>
-    </aside>
-
     <!-- Main Content -->
     <main>
       <header>
@@ -450,6 +395,9 @@
             <div class="image-caption">Figure 2.2: How the client manages translation and context routing.</div>
           </div>
         </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figures 2.1 & 2.2:</strong> Figure 2.1 illustrates the division of labor between the Host application, the Client connector, and the MCP Server. The Host interacts directly with the user and the LLM, the Client translates standard calls, and the Server interacts with the environment. Figure 2.2 shows how context routing is handled: the client acts as the middleware, translating high-level model requests into protocol-compliant JSON-RPC calls and routing them to the correct local or remote server configurations.
+        </div>
 
         <h3>JSON-RPC 2.0 Communication</h3>
         <p>
@@ -473,6 +421,9 @@
         <div class="image-container">
           <img src="Images/image_3.png" alt="Multi-Server Architecture Model">
           <div class="image-caption">Figure 2.3: Multiplexing layout where a single Client connects and aggregates multiple independent servers.</div>
+        </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figure 2.3:</strong> This diagram shows Session Multiplexing. Since a client application is not restricted to a single server, it can connect to multiple independent MCP servers at once (e.g., PostgreSQL DB, Google Maps API, Local Filesystem). The Client consolidates these tools and presents them as a single unified interface to the LLM.
         </div>
 
         <p>
@@ -499,6 +450,9 @@
             <div class="image-caption">Figure 2.5: Deep trace of the JSON-RPC request and response pipeline.</div>
           </div>
         </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figures 2.4 & 2.5:</strong> These diagrams depict the protocol's transport and communication pipeline. Figure 2.4 illustrates the transport adapter layer, showing how messages are converted between standard data objects and transport-specific formats (e.g., stdio lines or HTTP SSE streams). Figure 2.5 details a JSON-RPC request-response trace: showing the exact flow when a client sends a request (with unique ID and parameters), the server processes it, and returns the formatted response with the matching ID.
+        </div>
 
         <p>
           The transport layer handles encoding and decoding of JSON-RPC frames, which is separate from the application logic. 
@@ -514,6 +468,9 @@
             <img src="Images/image_8.png" alt="Advanced Design Diagram 4">
             <div class="image-caption">Figure 2.7: Remote connection routing and authentication handshake.</div>
           </div>
+        </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figures 2.6 & 2.7:</strong> These drawings show safety and networking configurations. Figure 2.6 explains how security boundaries work: because the Host executes the servers in isolated subprocesses or network sandboxes, the LLM cannot directly hijack the host OS. Figure 2.7 describes remote routing and how secure handshakes occur when connecting to cloud-hosted servers over SSE.
         </div>
       </section>
 
@@ -551,6 +508,9 @@
         <div class="image-container">
           <img src="Images/image_10.png" alt="Server Primitives Visualization">
           <div class="image-caption">Figure 2.8: Detailed primitives registry mapping Tools, Resources, and Prompts.</div>
+        </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figure 2.8:</strong> This registry shows the three core primitives of an MCP Server: 1) <strong>Tools</strong> (executable functions with JSON schemas, controlled by the model); 2) <strong>Resources</strong> (read-only data sources identified by custom URIs, controlled by the client); and 3) <strong>Prompts</strong> (ready-made template guides for user interactions, controlled by the server).
         </div>
       </section>
 
@@ -611,6 +571,9 @@
             <div class="image-caption">Figure 2.10: How FastMCP parses Python type hints into protocol-compliant JSON schemas.</div>
           </div>
         </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figures 2.9 & 2.10:</strong> These illustrations compare server implementation modes. Figure 2.9 demonstrates the simplified, decorator-driven architecture of FastMCP versus the low-level Server loop which requires manual async session management. Figure 2.10 shows how FastMCP dynamically inspects standard Python code type hints and docstrings to automatically generate the JSON schemas required by the protocol.
+        </div>
       </section>
 
       <!-- Section 6: Local vs. Remote MCP -->
@@ -629,6 +592,9 @@
           <img src="Images/image_13.png" alt="Local vs Remote Communication Setup">
           <div class="image-caption">Figure 2.11: Layout comparing local stdio subprocess piping with remote SSE over HTTP transport layers.</div>
         </div>
+        <div class="image-explanation">
+          <strong>Detailed Breakdown of Figure 2.11:</strong> This visual compares the two primary transport mechanisms: Local stdio piping (where the host runs the server as a local background command and pipes data through standard input/output) versus Remote SSE/HTTP (where standard Server-Sent Events push data to the client, and client requests are made via standard HTTP POST calls).
+        </div>
       </section>
 
       <footer>
@@ -645,27 +611,6 @@
   </div>
 
   <script>
-    // Smooth scrolling active state update in sidebar
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= (sectionTop - 200)) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
-          link.classList.add('active');
-        }
-      });
-    });
 
     // Lightbox Modal Functionality
     const lightbox = document.getElementById('lightbox');

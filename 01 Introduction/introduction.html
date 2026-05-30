@@ -42,78 +42,25 @@
       min-height: 100vh;
     }
 
-    /* Sidebar Styling */
-    aside {
-      width: 280px;
-      background: var(--sidebar-bg);
-      backdrop-filter: blur(20px);
-      border-right: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      position: fixed;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      z-index: 10;
-    }
-
-    .brand {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: linear-gradient(to right, #60a5fa, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .brand-icon {
-      width: 24px;
-      height: 24px;
-      background: var(--accent);
-      border-radius: 6px;
-      box-shadow: 0 0 12px var(--accent-glow);
-    }
-
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: block;
-      border: 1px solid transparent;
-    }
-
-    .nav-links a:hover, .nav-links a.active {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--border);
-      transform: translateX(4px);
-    }
-
-    .nav-links a.active {
-      border-left: 3px solid var(--accent);
-    }
-
     /* Main Content Styling */
     main {
-      margin-left: 280px;
       flex: 1;
       padding: 3rem 4rem;
-      max-width: 1200px;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
     }
 
     header {
@@ -427,26 +374,28 @@
       border-radius: 9999px;
       border: 1px solid var(--border);
     }
+
+    .image-explanation {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-top: -1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .image-explanation strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
   </style>
 </head>
 <body>
 
   <div class="app-container">
-    <!-- Sidebar -->
-    <aside>
-      <div class="brand">
-        <div class="brand-icon"></div>
-        <span>MCP Core Guide</span>
-      </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#core-concept" class="active">The Idea Behind MCP</a></li>
-          <li><a href="#history-evolution">History &amp; Evolution</a></li>
-          <li><a href="#ecosystem-benefits">Key Benefits</a></li>
-        </ul>
-      </nav>
-    </aside>
-
     <!-- Main Content -->
     <main>
       <header>
@@ -483,6 +432,9 @@
           <div class="image-container">
             <img src="Images/image_1.png" alt="The Core Concept of Model Context Protocol">
             <div class="image-caption">Figure 1.1: The Model Context Protocol (MCP) standardizes data exchange between AI Clients (hosts) and Server integrations.</div>
+          </div>
+          <div class="image-explanation">
+            <strong>Detailed Breakdown of Figure 1.1:</strong> This diagram illustrates the relationship between the three main components of the Model Context Protocol (MCP): the AI Host (e.g., Claude Desktop, VS Code), the MCP Client, and the MCP Server. The AI Host receives user prompts and coordinates tools. The MCP Client acts as the translator and message dispatcher, running inside the host. The MCP Server interacts with external resources (such as local databases, files, and third-party APIs). By establishing a standardized session over the protocol, the Client can dynamically query the Server's tools and resources, decoupling the AI model from raw system integration details.
           </div>
 
           <h3>The MCP Solution: USB-C for AI Systems</h3>
@@ -522,6 +474,13 @@
             <img src="Images/image_2.png" alt="Timeline of Agentic AI tool integration">
             <div class="image-caption">Figure 1.2: Historical stages of tool integrations, leading from manual prompts to unified protocol standards.</div>
           </div>
+          <div class="image-explanation">
+            <strong>Detailed Breakdown of Figure 1.2:</strong> This timeline traces the evolution of agentic AI integration across four distinct eras:
+            1) <em>Prompt Engineering (2022)</em>, where context was pasted manually into prompt windows;
+            2) <em>ReAct Pattern (Early 2023)</em>, where wrapper scripts parsed text outputs like `Action: Search[...]` to run tools;
+            3) <em>Native Function Calling (Late 2023)</em>, where models began outputting structured JSON schemas, but still required unique client-side integration code for each API; and
+            4) <em>Standardized Protocols (2024–Present)</em>, represented by MCP, which standardizes tool definitions and context exchange so a single server module can connect universally to any compliant host.
+          </div>
 
           <div class="timeline">
             <div class="timeline-item">
@@ -558,6 +517,9 @@
             <img src="Images/image_3.png" alt="Fragmented integration patterns before MCP">
             <div class="image-caption">Figure 1.3: Traditional fragmented integration patterns where every client requires custom wrappers for each database and service.</div>
           </div>
+          <div class="image-explanation">
+            <strong>Detailed Breakdown of Figure 1.3:</strong> This diagram visualizes the fragmentation problem (the "n * m" integration mess) prior to MCP. Without a unified standard, if you have three AI clients (e.g., Cursor, Claude Desktop, custom script) and three resources (e.g., PostgreSQL, Slack API, local filesystem), you have to build and maintain nine separate integration wrappers. Each client has its own custom format for tools, prompts, and authentication, creating a high maintenance burden and preventing tool reuse.
+          </div>
 
           <p>
             With MCP, this complex web is simplified. The AI client relies on a single protocol to connect to any number of local or remote MCP servers. The servers handle the database queries and API calls, and format the results into standard JSON-RPC packets for the client.
@@ -566,6 +528,9 @@
           <div class="image-container">
             <img src="Images/image_4.png" alt="Unified integration using MCP">
             <div class="image-caption">Figure 1.4: Unified integration architecture where all data sources are exposed as standardized MCP servers.</div>
+          </div>
+          <div class="image-explanation">
+            <strong>Detailed Breakdown of Figure 1.4:</strong> This diagram shows how MCP solves the fragmentation problem by introducing a hub-and-spoke standard. Instead of building nine custom wrappers, each resource is exposed as a single, standard MCP Server (e.g., PostgreSQL server, Slack server, Filesystem server). Compliant AI clients communicate with these servers via standard JSON-RPC packets. This reduces the integration complexity to "n + m", allowing any compliant client to connect to any compliant server instantly without rewriting code.
           </div>
         </div>
       </section>
@@ -602,27 +567,6 @@
   </div>
 
   <script>
-    // Smooth scrolling active state update in sidebar
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= (sectionTop - 200)) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
-          link.classList.add('active');
-        }
-      });
-    });
 
     // Lightbox Modal Functionality
     const lightbox = document.getElementById('lightbox');

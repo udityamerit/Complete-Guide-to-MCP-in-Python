@@ -1,0 +1,9 @@
+Metadata-Version: 2.4
+Name: 11-build-mcp-client-with-multi-mcp-server
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: mcp[cli]>=1.27.2
+Requires-Dist: openai>=2.38.0
+Requires-Dist: streamlit>=1.58.0
