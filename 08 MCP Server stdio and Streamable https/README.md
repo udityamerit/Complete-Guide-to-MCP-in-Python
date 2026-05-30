@@ -10,21 +10,6 @@ This project demonstrates:
 * Testing the server using MCP Inspector
 * Connecting the server remotely using `mcp-remote`
 
----
-
-# Project Structure
-
-```bash
-.
-├── images/
-│   ├── mcp_inspector1.PNG
-│   └── mcp_inspector2.PNG
-├── main.py
-├── server.py
-├── pyproject.toml
-├── README.md
-└── .python-version
-```
 
 ---
 

@@ -17,23 +17,6 @@ This project includes the following MCP servers:
 
 ---
 
-# Project Structure
-
-```bash
-.
-├── complex_input_mcp.py
-├── crypto.py
-├── local.py
-├── screenshot.py
-├── websearch_perpexity_model.py
-├── notes.txt
-├── web.html
-├── log.txt
-└── README.md
-```
-
----
-
 # Requirements
 
 Before running the project, make sure the following are installed:

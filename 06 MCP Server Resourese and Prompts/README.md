@@ -25,18 +25,6 @@ Using MCP, developers can:
 
 ---
 
-# Project Structure
-
-```bash
-.
-├── prompt.py
-├── resources.py
-├── pyproject.toml
-└── README.md
-```
-
----
-
 # Installation
 
 ## 1. Clone the Repository
