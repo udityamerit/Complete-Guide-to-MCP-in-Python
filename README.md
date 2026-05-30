@@ -167,7 +167,7 @@ Build multiple:
 
 ---
 
-# 📚 Reposetory Overview
+# 📚 Repository Overview
 
 Explore the step-by-step curriculum of the complete MCP course:
 
@@ -239,6 +239,13 @@ Explore the step-by-step curriculum of the complete MCP course:
 - Real-world, production-ready project implementations:
   1. **Chess Stats**: A custom MCP server connecting to the Chess.com public API for player stats and comparisons
   2. **Memory Tracker**: A persistent long-term semantic memory storage server for AI agents using OpenAI Vector Stores
+
+---
+
+### [11. Build MCP Client with Multi MCP Server](11%20Build%20MCP%20Client%20with%20Multi%20MCP%20Server)
+- Orchestrating multiple independent MCP servers (Airbnb and Memory Tracker) in a single Python client
+- Connecting client session dynamically to manage multi-server capabilities and auto-route tool calls
+- Creating user-friendly graphical interfaces using Streamlit for complex multi-tool chats
 
 ---
 
@@ -664,15 +671,22 @@ To run a specific project:
  ┃ ┣ 📂 Images/
  ┃ ┣ 📜 client_query.py
  ┃ ┗ 📜 README.md
- ┗ 📂 10 End-To-End Project
-   ┣ 📂 Chess Stats
-   ┃ ┣ 📂 Images/
-   ┃ ┣ 📂 src/chess_stats/
-   ┃ ┗ 📜 README.md
-   ┗ 📂 Memory Tracker
-     ┣ 📂 Images/
-     ┣ 📜 server.py
-     ┗ 📜 README.md
+ ┣ 📂 10 End-To-End Project
+ ┃ ┣ 📂 Chess Stats
+ ┃ ┃ ┣ 📂 Images/
+ ┃ ┃ ┣ 📂 src/chess_stats/
+ ┃ ┃ ┗ 📜 README.md
+ ┃ ┗ 📂 Memory Tracker
+ ┃   ┣ 📂 Images/
+ ┃   ┣ 📜 server.py
+ ┃   ┗ 📜 README.md
+ ┗ 📂 11 Build MCP Client with Multi MCP Server
+   ┣ 📂 Images/
+   ┣ 📜 client.py
+   ┣ 📜 chat_ui.py
+   ┣ 📜 main.py
+   ┣ 📜 pyproject.toml
+   ┗ 📜 README.md
 ```
 
 ---
@@ -681,9 +695,7 @@ To run a specific project:
 
 Here are some visual demonstrations of the projects in action, taken from the local debug consoles, Claude Desktop, and the MCP Inspector.
 
-<details>
-<summary><b>♟️ Chess.com Stats MCP Server (Chapter 10)</b></summary>
-<br>
+## ♟️ Chess.com Stats MCP Server (Chapter 10)
 
 #### 🔍 Chess Tool Discovery
 Discovering available Chess tools in the client:
@@ -697,11 +709,9 @@ Fetching real-time player ratings and stats from Chess.com API:
 Comparing two chess masters' stats side-by-side using the AI:
 ![Chess Player Comparison](10%20End-To-End%20Project/Chess%20Stats/Images/re3.PNG)
 
-</details>
+---
 
-<details>
-<summary><b>🧠 OpenAI Vector Store Memory Tracker (Chapter 10)</b></summary>
-<br>
+## 🧠 OpenAI Vector Store Memory Tracker (Chapter 10)
 
 #### 💾 Saving Dynamic Memory
 AI agent saving a memory dynamically into the OpenAI Vector Store:
@@ -715,11 +725,9 @@ Retrieving semantic memories based on natural language queries:
 The Memory Tracker MCP Server connected to the local MCP Inspector:
 ![Memory Inspector](10%20End-To-End%20Project/Memory%20Tracker/Images/inspector1.PNG)
 
-</details>
+---
 
-<details>
-<summary><b>🛠️ MCP Client Deep Dive & OpenAI Tool Calling (Chapter 09)</b></summary>
-<br>
+## 🛠️ MCP Client Deep Dive & OpenAI Tool Calling (Chapter 09)
 
 #### 📡 MCP Tool Discovery
 Discovering tools from the local Python MCP server session:
@@ -729,11 +737,9 @@ Discovering tools from the local Python MCP server session:
 Converting MCP tools schema to OpenAI Function Calling format and handling execution:
 ![OpenAI Tool Conversion](09%20MCP%20Client%20Deep%20Dive/Images/debug_io.PNG)
 
-</details>
+---
 
-<details>
-<summary><b>⚡ MCP Inspector & Streamable HTTP (Chapter 08)</b></summary>
-<br>
+## ⚡ MCP Inspector & Streamable HTTP (Chapter 08)
 
 #### 🔌 Connecting to Streamable HTTP Server
 Testing local or remote Streamable HTTP MCP servers using the official MCP Inspector interface:
@@ -743,7 +749,17 @@ Testing local or remote Streamable HTTP MCP servers using the official MCP Inspe
 Executing a greeting tool call and receiving structured output inside MCP Inspector:
 ![Executing Greeting Tool](08%20MCP%20Server%20stdio%20and%20Streamable%20https/Images/mcp_inspector2.PNG)
 
-</details>
+---
+
+## 🌐 Multi-Server MCP Agent: Airbnb & Memory (Chapter 11)
+
+#### 🔌 Multi-Server Tool Discovery
+Discovering and combining tools from both Airbnb and Memory servers dynamically:
+![Multi-Server Tool Discovery](11%20Build%20MCP%20Client%20with%20Multi%20MCP%20Server/Images/list_all_tools1.PNG)
+
+#### 🧠 Context-Aware Searches with Local Memory
+Filtering Airbnb properties using retrieved semantic memories during the search query:
+![Context-Aware Search](11%20Build%20MCP%20Client%20with%20Multi%20MCP%20Server/Images/list_all_tools4.PNG)
 
 ---
 
