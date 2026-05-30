@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01. Introduction to Model Context Protocol (MCP)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 100%);
+      --card-bg: rgba(22, 28, 45, 0.6);
+      --sidebar-bg: rgba(15, 23, 42, 0.8);
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.3);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      --glow-cyan: #06b6d4;
+      --glow-purple: #a855f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* Container & Layout */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Styling */
+    aside {
+      width: 280px;
+      background: var(--sidebar-bg);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      position: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: 10;
+    }
+
+    .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 6px;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+      border: 1px solid transparent;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border);
+      transform: translateX(4px);
+    }
+
+    .nav-links a.active {
+      border-left: 3px solid var(--accent);
+    }
+
+    /* Main Content Styling */
+    main {
+      margin-left: 280px;
+      flex: 1;
+      padding: 3rem 4rem;
+      max-width: 1200px;
+    }
+
+    header {
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #f8fafc, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 700px;
+    }
+
+    /* Content Cards */
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3rem;
+      margin-bottom: 3.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #93c5fd;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Explanation Layouts */
+    .explanation-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .point-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .point-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .point-card h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .point-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* Timeline & List elements */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin: 2.5rem 0;
+      border-left: 2px solid rgba(59, 130, 246, 0.2);
+      padding-left: 1.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -29px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .timeline-year {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: #60a5fa;
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Images */
+    .image-container {
+      background: #090d16;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 2rem 0;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.01);
+    }
+
+    .image-caption {
+      background: rgba(15, 23, 42, 0.95);
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: rgba(59, 130, 246, 0.05);
+      border-left: 4px solid var(--accent);
+      padding: 1.5rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+
+    .highlight-box p {
+      margin-bottom: 0;
+      color: #cbd5e1;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    /* Lightbox Modal styling */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(7, 10, 19, 0.95);
+      backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lightbox-modal.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: #9ca3af;
+      font-size: 40px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 25px;
+      color: #9ca3af;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+      background: rgba(15, 23, 42, 0.7);
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside>
+      <div class="brand">
+        <div class="brand-icon"></div>
+        <span>MCP Core Guide</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#core-concept" class="active">The Idea Behind MCP</a></li>
+          <li><a href="#history-evolution">History &amp; Evolution</a></li>
+          <li><a href="#ecosystem-benefits">Key Benefits</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <header>
+        <div class="badge">Chapter 01</div>
+        <h1>Introduction to MCP</h1>
+        <p class="subtitle">Understand the origin, background story, and fundamental problems that the Model Context Protocol solves for agentic AI applications.</p>
+      </header>
+
+      <!-- Section 1: The Idea Behind MCP -->
+      <section id="core-concept">
+        <div class="badge">Concept</div>
+        <h2>The Idea Behind MCP</h2>
+        
+        <div class="explanation-block">
+          <p>
+            Large Language Models (LLMs) are like extremely smart brains locked in empty rooms. They possess vast internal knowledge of coding, literature, and science, but they lack physical senses and hands. 
+            An LLM on its own cannot read a text file on your hard drive, run a calculation, query a live database, check weather data, or perform actions in web applications.
+          </p>
+
+          <div class="highlight-box">
+            <p>
+              <strong>The Goal of Agentic AI:</strong> To turn LLMs from conversational advisors into active, goal-driven agents. This is accomplished by providing models with <strong>Tools</strong> (external calculators, APIs, terminal access) and <strong>Context</strong> (local databases, files, documentation).
+            </p>
+          </div>
+
+          <h3>The Legacy Problem: Integration Fragmentation</h3>
+          <p>
+            Before the introduction of the Model Context Protocol, connecting AI models to external systems was an integration nightmare. If a developer built a specialized search tool, they had to write custom API wrappers for LangChain, custom schemas for LlamaIndex, custom formatters for Claude Desktop, and bespoke routing code for AutoGen.
+          </p>
+          <p>
+            Every client framework had its own way of defining tools, formatting JSON parameters, and executing callbacks. This fragmented approach meant that developers had to rewrite integration code from scratch every time they wanted to use the same tool with a different client.
+          </p>
+
+          <div class="image-container">
+            <img src="Images/image_1.png" alt="The Core Concept of Model Context Protocol">
+            <div class="image-caption">Figure 1.1: The Model Context Protocol (MCP) standardizes data exchange between AI Clients (hosts) and Server integrations.</div>
+          </div>
+
+          <h3>The MCP Solution: USB-C for AI Systems</h3>
+          <p>
+            The <strong>Model Context Protocol (MCP)</strong> is an open-source client-server communication protocol. Instead of custom integrations, MCP defines a single standardized specification. 
+            AI client applications (like VS Code, Claude Desktop, Cursor, or your custom Python clients) establish standardized sessions with MCP Servers. The server registers its capabilities (what tools it can run, what files it can read, and what prompt setups it provides), and the client consumes them dynamically.
+          </p>
+
+          <div class="key-points">
+            <div class="point-card">
+              <h4>🔌 Universal Connectivity</h4>
+              <p>Build a database connector or weather API once as an MCP server. Any compatible client can connect and use it immediately without code adjustments.</p>
+            </div>
+            <div class="point-card">
+              <h4>🛡️ Secure Separation of Concerns</h4>
+              <p>The AI model never runs local server processes directly. The client application acts as a secure coordinator, executing tools in isolated subprocesses and passing raw results back.</p>
+            </div>
+            <div class="point-card">
+              <h4>⚡ Simplified JSON-RPC Spec</h4>
+              <p>Communication is powered by JSON-RPC 2.0 messages, making it easy to build clients and servers in multiple programming languages (Python, TypeScript/JavaScript, Rust, Go).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: History & Evolution -->
+      <section id="history-evolution">
+        <div class="badge">History</div>
+        <h2>History of Agentic AI Development &amp; MCP</h2>
+        
+        <div class="explanation-block">
+          <p>
+            To appreciate why MCP is a breakthrough, it helps to look at the history of how developers have connected language models to external data.
+          </p>
+
+          <div class="image-container">
+            <img src="Images/image_2.png" alt="Timeline of Agentic AI tool integration">
+            <div class="image-caption">Figure 1.2: Historical stages of tool integrations, leading from manual prompts to unified protocol standards.</div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">Stage 1: Prompt Engineering (2022)</div>
+              <div class="timeline-title">Manual Context Insertion</div>
+              <p>AI context was restricted to simple copy-pasting. Developers had to manually insert files or database dumps directly into the prompt box, which quickly consumed context window limits.</p>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-year">Stage 2: ReAct Pattern &amp; Agents (Early 2023)</div>
+              <div class="timeline-title">Thought-Action-Observation Loops</div>
+              <p>Developers began prompting models using reasoning loops (Reasoning + Acting). The model would output a text string like <code>Action: SearchDatabase[query]</code>, which a custom wrapper script parsed, executed, and fed back into the next prompt.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">Stage 3: Native Function Calling (Late 2023)</div>
+              <div class="timeline-title">JSON Schema Tool Declarations</div>
+              <p>LLM providers (such as OpenAI and Anthropic) introduced native function calling. Models were fine-tuned to return structured JSON payloads rather than raw text blocks. While this improved reliability, developers still had to write custom client-side code for each API.</p>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">Stage 4: Standardized Protocols (Late 2024 - Present)</div>
+              <div class="timeline-title">The Model Context Protocol</div>
+              <p>To resolve this fragmentation, Anthropic released the Model Context Protocol as a universal open standard. MCP unifies tool execution, file reading, and prompt templates, allowing developers to create highly reusable AI integrations.</p>
+            </div>
+          </div>
+
+          <h3>Understanding the Fragmentation Shift</h3>
+          <p>
+            In legacy systems, every AI application needed custom drivers for every database, service, or API. This created a complex web of proprietary code, as shown below:
+          </p>
+
+          <div class="image-container">
+            <img src="Images/image_3.png" alt="Fragmented integration patterns before MCP">
+            <div class="image-caption">Figure 1.3: Traditional fragmented integration patterns where every client requires custom wrappers for each database and service.</div>
+          </div>
+
+          <p>
+            With MCP, this complex web is simplified. The AI client relies on a single protocol to connect to any number of local or remote MCP servers. The servers handle the database queries and API calls, and format the results into standard JSON-RPC packets for the client.
+          </p>
+
+          <div class="image-container">
+            <img src="Images/image_4.png" alt="Unified integration using MCP">
+            <div class="image-caption">Figure 1.4: Unified integration architecture where all data sources are exposed as standardized MCP servers.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Key Benefits of the Ecosystem -->
+      <section id="ecosystem-benefits">
+        <div class="badge">Benefits</div>
+        <h2>Why the MCP Ecosystem Matters</h2>
+        
+        <div class="explanation-block">
+          <p>
+            By adopting the Model Context Protocol standard, developers and enterprises gain several key advantages:
+          </p>
+          <ul>
+            <li><strong>Reusability:</strong> If you write an MCP server to query a PostgreSQL database, you can plug that exact server into Claude Desktop, VS Code, a custom Python script, or an enterprise Slackbot. You write the integration once, and it works everywhere.</li>
+            <li><strong>Maintainability:</strong> Server code is decoupled from client applications. If an external API updates, you only need to modify the code inside your MCP server. The client applications will adapt to the changes automatically.</li>
+            <li><strong>Security and Sandboxing:</strong> Since the MCP client coordinates tool execution, it can prompt users for permission before running critical commands (like writing files, sending emails, or executing terminal commands). The AI model remains in a secure, sandboxed environment.</li>
+            <li><strong>Language Agnostic:</strong> Any client can communicate with any server as long as they speak the JSON-RPC protocol over standard stdio pipes or SSE HTTP streams.</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer>
+        <p>&copy; 2026 Complete Guide to MCP in Python. Created by Uditya Narayan Tiwari.</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    // Smooth scrolling active state update in sidebar
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Lightbox Modal Functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const images = document.querySelectorAll('.image-container img');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        const captionText = img.nextElementSibling ? img.nextElementSibling.textContent : '';
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = captionText;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Lock main scroll
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Unlock main scroll
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    // Close lightbox on click outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg && e.target !== closeBtn) {
+        closeLightbox();
+      }
+    });
+
+    // Close lightbox on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>

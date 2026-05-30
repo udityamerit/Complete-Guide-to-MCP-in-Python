@@ -167,80 +167,78 @@ Build multiple:
 
 ---
 
-# 📚 Course Overview
+# 📚 Reposetory Overview
 
-## MCP Introduction
+Explore the step-by-step curriculum of the complete MCP course:
 
-- What MCP is
-- Why MCP exists
-- History of MCP
-- MCP ecosystem
-
----
-
-## MCP Architecture
-
-Learn:
-
-- MCP Client
-- MCP Server
-- Sessions
-- Tool Execution
-- Resources
-- Prompts
-- Transport Protocols
+### [01. Introduction](01%20Introduction)
+- What Model Context Protocol (MCP) is and why it exists
+- Interactive guide to the MCP ecosystem
+- Hands-on Jupyter notebook for beginners
 
 ---
 
-## MCP Environment Setup
-
-Setup:
-
-- Python
-- Git
-- VS Code
-- Claude
-- MCP SDK
+### [02. MCP Architecture Overview](02%20MCP%20Architecture%20Overview)
+- Learn key terminology: Clients, Hosts, Servers, Transports, and Sessions
+- Core building blocks: Tools, Resources, and Prompts
+- Deep architectural diagrams and communication flows
 
 ---
 
-## MCP Quickstart
-
-Build your first:
-
-- MCP Server
-- MCP Client
-
-using real-world examples.
+### [03. Creating and Connecting MCP Server](03%20Creating%20and%20Connecting%20MCP%20Server)
+- Setting up a Python development environment with the **UV** package manager
+- Building your very first custom weather MCP server
+- Connecting the server to **Claude Desktop** and using it locally
 
 ---
 
-## MCP Deep Dive
-
-### Tools
-- API Integrations
-- Local Functions
-- Structured Inputs
-
-### Resources
-- Dynamic Resources
-- Static Resources
-- Knowledge Context
-
-### Prompts
-- Reusable Prompt Systems
-- Prompt Templates
+### [04. Connect MCP Client to an MCP Server](04%20Connect%20MCP%20Client%20to%20an%20MCP%20Server)
+- Implementing an asynchronous Python MCP client
+- Connecting the client to a local weather server using `stdio` transport
+- Connecting to remote servers using NPX (e.g., openbnb/mcp-server-airbnb)
 
 ---
 
-## Deployment & Publishing
+### [05. MCP Server Deep Dive - Tools](05%20MCP%20Server%20Deep%20Dive%20-%20Tools)
+- Creating advanced MCP tools using FastMCP
+- Cryptocurrency price tracking tools (CoinGecko API)
+- Operating system utilities (Screenshot Capturing with PyAutoGUI)
+- External AI search integrations (Perplexity AI API)
+- Complex validation using Pydantic models for structured input
 
-Learn:
+---
 
-- Remote Hosting
-- Streamable HTTP Servers
-- GitHub Distribution
-- Virtual Machine Deployment
+### [06. MCP Server Resources and Prompts](06%20MCP%20Server%20Resourese%20and%20Prompts)
+- **Resources**: Exposing local data, inventory lists, and dynamically resolved prices using custom URIs (`inventory://`)
+- **Prompts**: Developing structured, reusable prompt templates for LLMs to generate reports or analyses
+
+---
+
+### [07. MCP Server Deployment and Publishing](07%20MCP%20Server%20Deployment%20and%20Publishing)
+- Standard packaging structure for Python MCP servers (`src/` architecture)
+- Configuring `pyproject.toml` with console scripts entry points
+- Publishing MCP servers to GitHub and running them globally via `uvx`
+
+---
+
+### [08. MCP Server stdio and Streamable HTTP](08%20MCP%20Server%20stdio%20and%20Streamable%20https)
+- Creating servers using `streamable-http` transport (FastMCP SSE)
+- Testing and debugging servers using **MCP Inspector** (`npx @modelcontextprotocol/inspector`)
+- Public deployment on AWS EC2 Virtual Machines (Nginx reverse proxy, PM2/Screen process managers)
+
+---
+
+### [09. MCP Client Deep Dive](09%20MCP%20Client%20Deep%20Dive)
+- Developing an advanced Python client integrated with **OpenAI API**
+- Auto-discovery of MCP tools and schema translation to OpenAI Function Calling format
+- Letting the model decide on tool invocations and feeding tool outputs back to GPT
+
+---
+
+### [10. End-To-End Projects](10%20End-To-End%20Project)
+- Real-world, production-ready project implementations:
+  1. **Chess Stats**: A custom MCP server connecting to the Chess.com public API for player stats and comparisons
+  2. **Memory Tracker**: A persistent long-term semantic memory storage server for AI agents using OpenAI Vector Stores
 
 ---
 
@@ -613,19 +611,15 @@ pip install -r requirements.txt
 
 # ▶️ Running MCP Projects
 
-## Run MCP Server
+This repository is organized into standalone chapter directories. Each folder contains its own self-contained code files, configuration, and dependencies.
 
-```bash
-python server.py
-```
-
----
-
-## Run MCP Client
-
-```bash
-python client.py
-```
+To run a specific project:
+1. Navigate to the desired folder:
+   ```bash
+   cd "05 MCP Server Deep Dive - Tools"
+   ```
+2. Follow the detailed setup and execution instructions inside the directory's `README.md`.
+3. Most servers can be run directly using `uv run <filename>.py` or standard `python <filename>.py` after installing dependencies.
 
 ---
 
@@ -633,20 +627,123 @@ python client.py
 
 ```bash
 📦 Complete-Guide-to-MCP-in-Python
- ┣ 📂 Introduction
- ┣ 📂 MCP Architecture
- ┣ 📂 Environment Setup
- ┣ 📂 MCP Quickstart
- ┣ 📂 MCP Servers
- ┃ ┣ 📂 Tools
- ┃ ┣ 📂 Resources
- ┃ ┣ 📂 Prompts
- ┃ ┣ 📂 Deployment
- ┃ ┗ 📂 Streamable HTTP
- ┣ 📂 MCP Clients
- ┣ 📂 End-to-End Projects
- ┗ 📂 Resources & Notes
+ ┣ 📂 01 Introduction
+ ┃ ┣ 📜 introduction.ipynb
+ ┃ ┗ 🌐 introduction.html
+ ┣ 📂 02 MCP Architecture Overview
+ ┃ ┣ 📜 MCP Architecture.ipynb
+ ┃ ┗ 🌐 MCP Architecture.html
+ ┣ 📂 03 Creating and Connecting MCP Server
+ ┃ ┣ 📜 weather.py
+ ┃ ┗ 📜 README.md
+ ┣ 📂 04 Connect MCP Client to an MCP Server
+ ┃ ┣ 📜 client.py
+ ┃ ┣ 📜 client_npx.py
+ ┃ ┗ 📜 README.md
+ ┣ 📂 05 MCP Server Deep Dive - Tools
+ ┃ ┣ 📜 crypto.py
+ ┃ ┣ 📜 local.py
+ ┃ ┣ 📜 screenshot.py
+ ┃ ┣ 📜 websearch_perpexity_model.py
+ ┃ ┣ 📜 complex_input_mcp.py
+ ┃ ┗ 📜 README.md
+ ┣ 📂 06 MCP Server Resourese and Prompts
+ ┃ ┣ 📜 prompt.py
+ ┃ ┣ 📜 resources.py
+ ┃ ┗ 📜 README.md
+ ┣ 📂 07 MCP Server Deployment and Publishing
+ ┃ ┣ 📂 src/mcpserver/
+ ┃ ┣ 📜 pyproject.toml
+ ┃ ┗ 📜 README.md
+ ┣ 📂 08 MCP Server stdio and Streamable https
+ ┃ ┣ 📂 Images/
+ ┃ ┣ 📜 server.py
+ ┃ ┣ 📜 main.py
+ ┃ ┗ 📜 README.md
+ ┣ 📂 09 MCP Client Deep Dive
+ ┃ ┣ 📂 Images/
+ ┃ ┣ 📜 client_query.py
+ ┃ ┗ 📜 README.md
+ ┗ 📂 10 End-To-End Project
+   ┣ 📂 Chess Stats
+   ┃ ┣ 📂 Images/
+   ┃ ┣ 📂 src/chess_stats/
+   ┃ ┗ 📜 README.md
+   ┗ 📂 Memory Tracker
+     ┣ 📂 Images/
+     ┣ 📜 server.py
+     ┗ 📜 README.md
 ```
+
+---
+
+# 📸 Project Demos & Screenshots
+
+Here are some visual demonstrations of the projects in action, taken from the local debug consoles, Claude Desktop, and the MCP Inspector.
+
+<details>
+<summary><b>♟️ Chess.com Stats MCP Server (Chapter 10)</b></summary>
+<br>
+
+#### 🔍 Chess Tool Discovery
+Discovering available Chess tools in the client:
+![Chess Tool Discovery](10%20End-To-End%20Project/Chess%20Stats/Images/re1.PNG)
+
+#### 📈 Chess Player Stats
+Fetching real-time player ratings and stats from Chess.com API:
+![Magnus Carlsen Stats](10%20End-To-End%20Project/Chess%20Stats/Images/re2.PNG)
+
+#### ⚔️ Player Comparison
+Comparing two chess masters' stats side-by-side using the AI:
+![Chess Player Comparison](10%20End-To-End%20Project/Chess%20Stats/Images/re3.PNG)
+
+</details>
+
+<details>
+<summary><b>🧠 OpenAI Vector Store Memory Tracker (Chapter 10)</b></summary>
+<br>
+
+#### 💾 Saving Dynamic Memory
+AI agent saving a memory dynamically into the OpenAI Vector Store:
+![Save Memory](10%20End-To-End%20Project/Memory%20Tracker/Images/save_memory.PNG)
+
+#### 🔍 Semantic Memory Retrieval
+Retrieving semantic memories based on natural language queries:
+![Retrieve Memory](10%20End-To-End%20Project/Memory%20Tracker/Images/retrice_query.PNG)
+
+#### 🖥️ Inspector Connection
+The Memory Tracker MCP Server connected to the local MCP Inspector:
+![Memory Inspector](10%20End-To-End%20Project/Memory%20Tracker/Images/inspector1.PNG)
+
+</details>
+
+<details>
+<summary><b>🛠️ MCP Client Deep Dive & OpenAI Tool Calling (Chapter 09)</b></summary>
+<br>
+
+#### 📡 MCP Tool Discovery
+Discovering tools from the local Python MCP server session:
+![Python Client Tool Discovery](09%20MCP%20Client%20Deep%20Dive/Images/mcp_debug1.PNG)
+
+#### 🤖 OpenAI Tool Conversion & Execution
+Converting MCP tools schema to OpenAI Function Calling format and handling execution:
+![OpenAI Tool Conversion](09%20MCP%20Client%20Deep%20Dive/Images/debug_io.PNG)
+
+</details>
+
+<details>
+<summary><b>⚡ MCP Inspector & Streamable HTTP (Chapter 08)</b></summary>
+<br>
+
+#### 🔌 Connecting to Streamable HTTP Server
+Testing local or remote Streamable HTTP MCP servers using the official MCP Inspector interface:
+![Connecting Streamable HTTP](08%20MCP%20Server%20stdio%20and%20Streamable%20https/Images/mcp_inspector1.PNG)
+
+#### 🧪 Greeting Tool Test Execution
+Executing a greeting tool call and receiving structured output inside MCP Inspector:
+![Executing Greeting Tool](08%20MCP%20Server%20stdio%20and%20Streamable%20https/Images/mcp_inspector2.PNG)
+
+</details>
 
 ---
 

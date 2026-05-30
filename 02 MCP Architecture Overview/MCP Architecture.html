@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02. MCP Architecture Overview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #070a13 0%, #0f172a 100%);
+      --card-bg: rgba(15, 23, 42, 0.6);
+      --sidebar-bg: rgba(11, 17, 32, 0.85);
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.3);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+      --glow-cyan: #06b6d4;
+      --glow-purple: #a855f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* Container & Layout */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar Styling */
+    aside {
+      width: 300px;
+      background: var(--sidebar-bg);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      position: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: 10;
+      overflow-y: auto;
+    }
+
+    .brand {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-icon {
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 6px;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: block;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border);
+      transform: translateX(4px);
+    }
+
+    .nav-links a.active {
+      border-left: 3px solid var(--accent);
+    }
+
+    /* Main Content Styling */
+    main {
+      margin-left: 300px;
+      flex: 1;
+      padding: 3rem 4rem;
+      max-width: 1200px;
+    }
+
+    header {
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #f8fafc, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 700px;
+    }
+
+    /* Content Cards */
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 3.5rem;
+      margin-bottom: 3.5rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #ddd6fe;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Images */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .image-container {
+      background: #060913;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.01);
+    }
+
+    .image-caption {
+      background: rgba(15, 23, 42, 0.95);
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Info Alert Box */
+    .alert-box {
+      background: rgba(139, 92, 246, 0.05);
+      border-left: 4px solid var(--accent);
+      border-radius: 4px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .alert-box h4 {
+      font-family: 'Outfit', sans-serif;
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .alert-box p {
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    /* Tables */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-table th {
+      background: rgba(139, 92, 246, 0.1);
+      color: #fff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+    }
+
+    .comparison-table tr:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    main {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070a13;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+
+    /* Lightbox Modal styling */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(7, 10, 19, 0.95);
+      backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .lightbox-modal.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: #9ca3af;
+      font-size: 40px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 25px;
+      color: #9ca3af;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+      background: rgba(15, 23, 42, 0.7);
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+    }
+    
+    /* Make images explicitly look clickable */
+    .image-container img {
+      cursor: zoom-in;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside>
+      <div class="brand">
+        <div class="brand-icon"></div>
+        <span>Architecture Guide</span>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#mcp-architecture" class="active">MCP Architecture</a></li>
+          <li><a href="#multi-server">Multi-Server Architecture</a></li>
+          <li><a href="#advanced-architecture">Advanced Design</a></li>
+          <li><a href="#server-primitives">Server Primitives</a></li>
+          <li><a href="#fastmcp-vs-server">FastMCP vs. Server</a></li>
+          <li><a href="#local-vs-remote">Local vs. Remote MCP</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <header>
+        <div class="badge">Chapter 02</div>
+        <h1>MCP Architecture Overview</h1>
+        <p class="subtitle">A detailed exploration of the components, interfaces, transport protocols, and data schemas that drive the Model Context Protocol.</p>
+      </header>
+
+      <!-- Section 1: MCP Architecture -->
+      <section id="mcp-architecture">
+        <div class="badge">Core</div>
+        <h2>1. The Client-Host-Server Triad</h2>
+        <p>
+          To understand how the Model Context Protocol functions, we must look at its architectural relationship. MCP breaks communication down into three clear roles: the **Host**, the **Client**, and the **Server**.
+        </p>
+        
+        <ul>
+          <li><strong>The Host:</strong> This is the user-facing application (e.g., Claude Desktop, VS Code, Cursor, or a custom Python script) that coordinates the AI's workspace. The Host decides *when* to invoke the model and *when* to execute a tool.</li>
+          <li><strong>The Client:</strong> The module running inside the Host that handles connection sessions, parses data structures, and translates inputs and outputs between the LLM and the servers.</li>
+          <li><strong>The Server:</strong> Small, dedicated scripts or applications that connect to databases, read local files, or query APIs. Servers do not communicate directly with the LLM; they interact only with the Client.</li>
+        </ul>
+
+        <div class="image-grid">
+          <div class="image-container">
+            <img src="Images/image_1.png" alt="MCP Architecture Part 1">
+            <div class="image-caption">Figure 2.1: The primary layout of Hosts, Clients, and Servers under the protocol.</div>
+          </div>
+          <div class="image-container">
+            <img src="Images/image_2.png" alt="MCP Architecture Part 2">
+            <div class="image-caption">Figure 2.2: How the client manages translation and context routing.</div>
+          </div>
+        </div>
+
+        <h3>JSON-RPC 2.0 Communication</h3>
+        <p>
+          All messages between the Client and Server use the **JSON-RPC 2.0 specification**. This is a lightweight, stateless protocol that specifies:
+        </p>
+        <ol>
+          <li><strong>Requests:</strong> Client messages expecting a response (e.g. `tools/list` or `tools/call`). They contain an `id`, a `method`, and a `params` dictionary.</li>
+          <li><strong>Responses:</strong> Server messages returning output or errors matching the request's `id`.</li>
+          <li><strong>Notifications:</strong> One-way status messages (like logging data or resource notifications) that do not require response packets.</li>
+        </ol>
+      </section>
+
+      <!-- Section 2: Multi-Server Architecture -->
+      <section id="multi-server">
+        <div class="badge">Multi-Server</div>
+        <h2>2. Multi-Server MCP Architecture</h2>
+        <p>
+          A powerful aspect of MCP is **Session Multiplexing**. A single AI Client (like Claude Desktop) is not limited to communicating with one server. Instead, it can establish connection sessions with multiple local and remote servers simultaneously.
+        </p>
+
+        <div class="image-container">
+          <img src="Images/image_3.png" alt="Multi-Server Architecture Model">
+          <div class="image-caption">Figure 2.3: Multiplexing layout where a single Client connects and aggregates multiple independent servers.</div>
+        </div>
+
+        <p>
+          When you start your AI Host, the Client connects to all registered servers and compiles their capabilities. If Server A exposes weather tools and Server B exposes database search tools, the client combines these tool lists and presents them to the LLM. 
+          When the model outputs a tool call request, the client routes the request to the specific server that registered it.
+        </p>
+      </section>
+
+      <!-- Section 3: Advanced MCP Architecture -->
+      <section id="advanced-architecture">
+        <div class="badge">Deep Dive</div>
+        <h2>3. Advanced MCP Architecture</h2>
+        <p>
+          Behind the scenes, the protocol establishes strict protocols for session negotiation, message serialization, and transport adapters.
+        </p>
+
+        <div class="image-grid">
+          <div class="image-container">
+            <img src="Images/image_5.png" alt="Advanced Design Diagram 1">
+            <div class="image-caption">Figure 2.4: Details of the transport adapter layer converting standard calls.</div>
+          </div>
+          <div class="image-container">
+            <img src="Images/image_6.png" alt="Advanced Design Diagram 2">
+            <div class="image-caption">Figure 2.5: Deep trace of the JSON-RPC request and response pipeline.</div>
+          </div>
+        </div>
+
+        <p>
+          The transport layer handles encoding and decoding of JSON-RPC frames, which is separate from the application logic. 
+          This separation of concerns makes it easy to swap out transport layers (like replacing local stdio piping with a remote web socket) without modifying your tool definitions.
+        </p>
+
+        <div class="image-grid">
+          <div class="image-container">
+            <img src="Images/image_7.png" alt="Advanced Design Diagram 3">
+            <div class="image-caption">Figure 2.6: Security boundaries and sandbox execution constraints.</div>
+          </div>
+          <div class="image-container">
+            <img src="Images/image_8.png" alt="Advanced Design Diagram 4">
+            <div class="image-caption">Figure 2.7: Remote connection routing and authentication handshake.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Server Primitives -->
+      <section id="server-primitives">
+        <div class="badge">Primitives</div>
+        <h2>4. MCP Server Primitives</h2>
+        <p>
+          The Model Context Protocol divides capabilities into three primary interface primitives, which servers can choose to expose:
+        </p>
+        
+        <h3>🛠️ 1. Tools (Executable Operations)</h3>
+        <p>
+          Tools are executable functions exposed by the server. They allow the AI model to perform actions and write back to external systems (e.g., executing a SQL query, taking a screenshot, or searching the web). Tools are:
+        </p>
+        <ul>
+          <li><strong>Model-Controlled:</strong> The model decides *when* and *with what parameters* to call a tool based on the user's prompt.</li>
+          <li><strong>Strictly Typed:</strong> Parameters are described using standard JSON Schema. FastMCP generates this schema automatically from Python function type hints.</li>
+        </ul>
+
+        <h3>📂 2. Resources (Read-Only Context)</h3>
+        <p>
+          Resources are static or dynamic data points that provide read-only context. Examples include files, database tables, or real-time server logs.
+        </p>
+        <ul>
+          <li><strong>URI-Based Access:</strong> Resources are queried using custom URI schemes (e.g., <code>file:///logs/today.txt</code> or <code>database://orders/latest</code>).</li>
+          <li><strong>Dynamic Templates:</strong> Resources can use parameterized templates (e.g., <code>inventory://{item_id}/price</code>), allowing servers to resolve values on the fly.</li>
+        </ul>
+
+        <h3>📝 3. Prompts (Guided Interaction Templates)</h3>
+        <p>
+          Prompts represent reusable prompt templates or system roles exposed by the server (e.g., "Code Reviewer" or "SQL Expert"). They allow servers to supply pre-structured prompt contexts directly to the client, simplifying complex agent workflows.
+        </p>
+
+        <div class="image-container">
+          <img src="Images/image_10.png" alt="Server Primitives Visualization">
+          <div class="image-caption">Figure 2.8: Detailed primitives registry mapping Tools, Resources, and Prompts.</div>
+        </div>
+      </section>
+
+      <!-- Section 5: FastMCP vs. Server -->
+      <section id="fastmcp-vs-server">
+        <div class="badge">SDKs</div>
+        <h2>5. FastMCP vs. Low-Level Server API</h2>
+        <p>
+          When developing MCP servers in Python, you can choose between two main development interfaces:
+        </p>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>FastMCP (High-Level API)</th>
+              <th>Server (Low-Level API)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Code Complexity</strong></td>
+              <td>Extremely simple; uses standard decorators.</td>
+              <td>Complex; requires manual session management.</td>
+            </tr>
+            <tr>
+              <td><strong>Schema Generation</strong></td>
+              <td>Automatic; parsed from Python type hints &amp; docstrings.</td>
+              <td>Manual; must write raw JSON schemas.</td>
+            </tr>
+            <tr>
+              <td><strong>Setup Speed</strong></td>
+              <td>Fast; run a server in under 10 lines of code.</td>
+              <td>Slow; requires managing async message loops.</td>
+            </tr>
+            <tr>
+              <td><strong>Flexibility</strong></td>
+              <td>Excellent; covers 95% of typical use cases.</td>
+              <td>Maximum; allow custom JSON-RPC routers.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="alert-box">
+          <h4>💡 Recommendation: Always Use FastMCP</h4>
+          <p>
+            Always use <strong>FastMCP</strong> wherever possible. It is a powerful abstraction that supports most features out-of-the-box, reduces boilerplate code by 90%, and is actively supported by the community and the open-source project.
+          </p>
+        </div>
+
+        <div class="image-grid">
+          <div class="image-container">
+            <img src="Images/image_11.png" alt="FastMCP vs Server Code Patterns">
+            <div class="image-caption">Figure 2.9: Decoupled design of FastMCP versus the raw Server execution loop.</div>
+          </div>
+          <div class="image-container">
+            <img src="Images/image_12.png" alt="Type Hint Parsing">
+            <div class="image-caption">Figure 2.10: How FastMCP parses Python type hints into protocol-compliant JSON schemas.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Local vs. Remote MCP -->
+      <section id="local-vs-remote">
+        <div class="badge">Transports</div>
+        <h2>6. Local vs. Remote MCP</h2>
+        <p>
+          Depending on where your server runs, MCP supports two main modes:
+        </p>
+        <ul>
+          <li><strong>Local MCP (stdio):</strong> The server runs as a local background process spawned by the client. Communication happens through standard input (stdin) and standard output (stdout) pipes. It is secure, requires no network setup, and is the default for desktop integrations.</li>
+          <li><strong>Remote MCP (Streamable HTTP):</strong> The server runs as an independent web service. It uses HTTP SSE (Server-Sent Events) to push messages to the client and receives client requests via standard HTTP POST calls. Useful for cloud hosting and SaaS databases.</li>
+        </ul>
+
+        <div class="image-container">
+          <img src="Images/image_13.png" alt="Local vs Remote Communication Setup">
+          <div class="image-caption">Figure 2.11: Layout comparing local stdio subprocess piping with remote SSE over HTTP transport layers.</div>
+        </div>
+      </section>
+
+      <footer>
+        <p>&copy; 2026 Complete Guide to MCP in Python. Created by Uditya Narayan Tiwari.</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox-modal">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    // Smooth scrolling active state update in sidebar
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Lightbox Modal Functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.lightbox-close');
+    const images = document.querySelectorAll('.image-container img');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        const captionText = img.nextElementSibling ? img.nextElementSibling.textContent : '';
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = captionText;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Lock main scroll
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = ''; // Unlock main scroll
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    
+    // Close lightbox on click outside the image
+    lightbox.addEventListener('click', (e) => {
+      if (e.target !== lightboxImg && e.target !== closeBtn) {
+        closeLightbox();
+      }
+    });
+
+    // Close lightbox on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
