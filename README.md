@@ -10,6 +10,8 @@
 
 <h3>The Ultimate Beginner-to-Advanced Guide for Building MCP Servers & Clients with Python</h3>
 
+![alt text](MCP.png)
+
 <p>
 Learn the complete architecture, protocol, deployment, and real-world implementation of MCP (Model Context Protocol) using Python.
 </p>
