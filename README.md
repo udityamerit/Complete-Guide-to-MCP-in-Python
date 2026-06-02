@@ -12,6 +12,7 @@
 
 ![alt text](MCP.png)
 
+
 <p>
 Learn the complete architecture, protocol, deployment, and real-world implementation of MCP (Model Context Protocol) using Python.
 </p>
@@ -70,6 +71,8 @@ Think of MCP as the:
 
 Build once → Connect everywhere.
 
+---
+![alt text](mcpinfo.png)
 ---
 
 # 🌍 Why MCP Matters
